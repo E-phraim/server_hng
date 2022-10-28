@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 type helloHngResponse struct{
@@ -22,7 +23,10 @@ func helloHng(w http.ResponseWriter, r *http.Request){
 }
 
 func main(){
-	port := 8080
+	port := os.Getenv("PORT")
+	if port == ""{
+		port = "8080"
+	}
 
 	http.HandleFunc("/hellohng", helloHng)
 	log.Printf("Server starting on port %v\n", port)
