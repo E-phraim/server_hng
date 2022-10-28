@@ -8,23 +8,28 @@ import (
 	"os"
 )
 
-type helloHngResponse struct{
-	SlackUsername string `json:"SlackUsername"`
-	Backend bool `json:"Backend"`
-	Age int `json:"Age"`
-	Bio string `json:"Bio"`
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
-func helloHng(w http.ResponseWriter, r *http.Request){
+type helloHngResponse struct {
+	SlackUsername string `json:"SlackUsername"`
+	Backend       bool   `json:"Backend"`
+	Age           int    `json:"Age"`
+	Bio           string `json:"Bio"`
+}
+
+func helloHng(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	response := helloHngResponse{SlackUsername: "kodeforce98", Backend: true, Age: 24, Bio: "Proud firstborn, Golang Developer, Committed christian, Faithful boyfriend"}
-	
+
 	encoder := json.NewEncoder(w)
 	encoder.Encode(response)
 }
 
-func main(){
+func main() {
 	port := os.Getenv("PORT")
-	if port == ""{
+	if port == "" {
 		port = "9090"
 	}
 
