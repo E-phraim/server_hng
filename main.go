@@ -16,7 +16,7 @@ type helloHngResponse struct{
 }
 
 func helloHng(w http.ResponseWriter, r *http.Request){
-	response := helloHngResponse{SlackUsername: "kodeforce98", Backend: true, Age: 24, Bio: "proud firtborn, Golang Developer, committed christian, faithful boyfriend"}
+	response := helloHngResponse{SlackUsername: "kodeforce98", Backend: true, Age: 24, Bio: "Proud firstborn, Golang Developer, Committed christian, Faithful boyfriend"}
 	
 	encoder := json.NewEncoder(w)
 	encoder.Encode(response)
@@ -25,10 +25,10 @@ func helloHng(w http.ResponseWriter, r *http.Request){
 func main(){
 	port := os.Getenv("PORT")
 	if port == ""{
-		port = "8080"
+		port = "9090"
 	}
 
-	http.HandleFunc("/hellohng", helloHng)
+	http.HandleFunc("/", helloHng)
 	log.Printf("Server starting on port %v\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), nil))
 }
