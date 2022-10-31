@@ -21,6 +21,7 @@ type helloHngResponse struct {
 
 func helloHng(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
+	w.Header().Add("Content-Type", "application/json")
 	response := helloHngResponse{SlackUsername: "kodeforce98", Backend: true, Age: 24, Bio: "Proud firstborn, Golang Developer, Committed christian, Faithful boyfriend"}
 
 	encoder := json.NewEncoder(w)
