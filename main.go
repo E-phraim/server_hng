@@ -13,10 +13,10 @@ func enableCors(w *http.ResponseWriter) {
 }
 
 type helloHngResponse struct {
-	SlackUsername string `json:"SlackUsername"`
-	Backend       bool   `json:"Backend"`
-	Age           int    `json:"Age"`
-	Bio           string `json:"Bio"`
+	SlackUsername string `json:"slackUsername"`
+	Backend       bool   `json:"backend"`
+	Age           int    `json:"age"`
+	Bio           string `json:"bio"`
 }
 
 func helloHng(w http.ResponseWriter, r *http.Request) {
